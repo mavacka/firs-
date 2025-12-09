@@ -1,20 +1,34 @@
-﻿// main1.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
-
-int main()
-{
-    std::cout << "Hello World!\n";
+﻿#include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+std::vector<std::string> readstrfile(const std::string& filename) {
+    std::vector<std::string> lines;
+    return lines;
+}
+void displayLines(const std::vector<std::string>& lines) {
+    for (const auto& line : lines) {
+        std::cout << line << std::endl;
+    }
+}
+void writeToFile(const std::vector<std::string>& lines, const std::string& filename) {
+    std::ofstream outFile(filename);
+    if (outFile.is_open()) {
+        for (const auto& line : lines) {
+            outFile << line << std::endl;
+        }
+        outFile.close();
+    }
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"ываыва
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+int main() {
+setlocale(LC_ALL, "Russian");
+    std::string inputFile = "Vvod.txt";
+    std::string outputFile = "Vivod.txt";
+    std::vector<std::string> lines = readstrfile(inputFile);
+    displayLines(lines);
+    writeToFile(lines, outputFile);
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+    std::cout << "Программа завершена." << std::endl;
+    return 0;
+}
